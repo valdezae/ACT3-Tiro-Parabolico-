@@ -39,14 +39,14 @@ def move():
         target = vector(200, y)
         targets.append(target)
 
-    for target in targets:
+    for target in targets: #Mueve los globos .5 unidades en X cada refresh
         target.x -= 0.5
 
-    if inside(ball):
+    if inside(ball): #Hace que la bola avance cada vez más lento en y
         speed.y -= 0.35
         ball.move(speed)
 
-    dupe = targets.copy()
+    dupe = targets.copy() #crea una copia de los globos
     targets.clear()
 
     for target in dupe:
@@ -56,15 +56,15 @@ def move():
     draw()
 
     for target in targets:
-        if not inside(target):
+        if not inside(target): #Si no se encuentra dentro de los limites, regresa el globo a X-200 y a una Y aleatoria
             target.x = 200
             target.y = randrange(-150, 150)
 
 
-    ontimer(move, 15)
+    ontimer(move, 15) #Llama la función move cada 15 milisegundos
 
 setup(420, 420, 370, 0)
-hideturtle()
+hideturtle() #Esconde el cursor de turtle
 up()
 tracer(False)
 onscreenclick(tap)
